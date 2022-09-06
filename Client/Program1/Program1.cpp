@@ -56,9 +56,9 @@ int main()
 					y.DisplayString(Buffer);
 					y.CountSum(Buffer);
 					y.ClearBuffer(Buffer);
-					char c = static_cast<char>(y.sum);
+					char32_t c = static_cast<char32_t>(y.sum);
 					if (success == 0) {
-						send(sock, &c, sizeof(char), NULL);
+						send(sock, (char*)&c, sizeof(char32_t), NULL);
 					}
 				y.sum = 0;
 			}
