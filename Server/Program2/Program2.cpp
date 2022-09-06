@@ -6,7 +6,7 @@
 int main()
 {
 	long SUCCESSFUL;
-	char ca=NULL;
+	char32_t ca=NULL;
 #ifdef _WIN32
 	WSAData WinSockData;
 	WORD DLLVERSION;
@@ -44,9 +44,9 @@ int main()
 #else
 		sock_CONNECTION = accept(sock_LISTEN, (struct sockaddr*)&ADDRESS, &AddressSize);
 #endif	
-			if (recv(sock_CONNECTION, &ca, sizeof(char), NULL)) {
+			if (recv(sock_CONNECTION, (char*)&ca, sizeof(char32_t), NULL)) {
 				if (ca != NULL) {
-					int Num = static_cast<int>(ca);
+					int Num =static_cast<int>(ca);
 					std::string NumCount = std::to_string(Num);
 					if ((NumCount.size() >= 2) && ((Num % 32) == 0)) {
 						std::cout << "SERVER: RECIEVED following data:" << std::endl;
